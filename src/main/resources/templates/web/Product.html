@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Running Store</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Running Store">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    <link rel="icon" th:href="@{/images/icons/web-icon-180.png}" type='image/x-icon' sizes="180x180"/>
+    <link rel="stylesheet" th:href="@{/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css}">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/plugins/owl-carousel/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{/css/plugins/magnific-popup/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/css/plugins/nouislider/nouislider.css}">
+    <!-- Plugins JS File -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/jquery.hoverIntent.min.js}"></script>
+    <script th:src="@{/js/jquery.waypoints.min.js}"></script>
+    <script th:src="@{/js/superfish.min.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/wNumb.js}"></script>
+    <script th:src="@{/js/bootstrap-input-spinner.js}"></script>
+    <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/js/nouislider.min.js}"></script>
+    <script th:src="@{/js/jquery.plugin.min.js}"></script>
+    <script th:src="@{/js/jquery.countdown.min.js}"></script>
+    <!-- Main JS File -->
+    <script th:src="@{/js/main.js}"></script>
+</head>
+
+<body>
+<div class="page-wrapper">
+    <header class="header">
+        <div class="header-bottom sticky-header">
+            <div class="container">
+                <div class="header-left">
+                    <a th:href="@{/homePage}" class="logo">
+                        <img th:src="@{/images/icons/web-logo.png}" alt="Logo" width="250" height="30">
+                    </a>
+                </div>
+                <div class="header-center">
+                    <nav class="main-nav">
+                        <ul class="menu sf-arrows">
+                            <li>
+                                <a th:href="@{/shopPage/{id}(id=1)}" class="sf-with-ul">Shoes</a>
+                                <ul>
+                                    <li>
+                                        <a th:href="@{/shopPage/{gender}/{id}(gender='Men', id=1)}" class="sf-with-ul">Men's
+                                            Shoes</a>
+
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Nike', id=1)}">Nike</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Adidas', id=1)}">Adidas</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Saucony', id=1)}">Saucony</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Altra', id=1)}">Altra</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/shopPage/{gender}/{id}(gender='Women', id=1)}"
+                                           class="sf-with-ul">Women's Shoes</a>
+
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Nike', id=1)}">Nike</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Adidas', id=1)}">Adidas</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Saucony', id=1)}">Saucony</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Altra', id=1)}">Altra</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a th:href="@{/shopPage/{id}(id=2)}">GPS Watches</a>
+                            </li>
+                            <li>
+                                <a class="sf-with-ul">Accessories</a>
+
+                                <ul>
+                                    <li><a th:href="@{/shopPage/{id}(id=3)}">Bone-conduction earphones</a></li>
+                                    <li><a th:href="@{/shopPage/{id}(id=5)}">Running socks</a></li>
+                                    <li><a th:href="@{/shopPage/{id}(id=4)}">Running hat</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a th:href="@{/shopPage/{id}(id=6)}" class="sf-with-ul">Clothes</a>
+
+                                <ul>
+                                    <li>
+                                        <a th:href="@{/shopPage/{gender}/{id}(gender='Men', id=6)}" class="sf-with-ul">Men's
+                                            Clothes</a>
+
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='T8', id=6)}">T8</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Nike', id=6)}">Nike</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Adidas', id=6)}">Adidas</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/shopPage/{gender}/{id}(gender='Women', id=6)}"
+                                           class="sf-with-ul">Women's Clothes</a>
+
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='T8', id=6)}">T8</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Nike', id=6)}">Nike</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Adidas', id=6)}">Adidas</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a th:href="@{/shopPage/{id}(id=7)}">Nutrition</a>
+                            </li>
+                        </ul><!-- End .menu -->
+                    </nav><!-- End .main-nav -->
+                </div><!-- End .header-left -->
+
+                <div class="header-right">
+                    <div class="header-search">
+                        <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+                        <form action="#" method="get">
+                            <div class="header-search-wrapper">
+                                <label for="q" class="sr-only">Search</label>
+                                <input type="search" class="form-control" name="q" id="q" placeholder="Search in..."
+                                       required>
+                            </div><!-- End .header-search-wrapper -->
+                        </form>
+                    </div><!-- End .header-search -->
+                    <div class="dropdown cart-dropdown">
+                        <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+                             aria-expanded="false" data-display="static">
+                            <i class="icon-user" th:if="${user != null}"
+                               style="font-size: 28px; padding-left: 10px;"></i>
+                            <span class="wishlist-txt" th:if="${user != null}" th:text="${user.getUsername()}"
+                                  style="font-size: 15px;">Login</span>
+                        </div>
+
+                        <a class="wishlist-link" th:href="@{/login}" th:if="${user == null}">
+                            <span class="wishlist-txt" style="font-size: 15px;">Log in</span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right"
+                             style="transform: translateX(35%); display: flex; justify-content: center; align-items: center; max-width: 170px;"
+                             th:if="${user != null}">
+                            <div class="dropdown-item-lead">
+                                <div class="product" style="justify-content: center;">
+                                    <a class="wishlist-link"
+                                       th:href="@{/user/{username}(username=${user.getUsername()})}">
+                                        <span style="font-size: 15px;">Edit Info</span>
+                                    </a>
+                                </div>
+
+                                <div class="product" style="justify-content: center;">
+                                    <a class="wishlist-link"
+                                       th:href="@{/user}">
+                                        <span style="font-size: 15px;">Order</span>
+                                    </a>
+                                </div>
+
+                                <div class="product" style="justify-content: center;">
+                                    <a class="wishlist-link" th:href="@{/logout}"
+                                       th:if="${user != null and user.getUsername() != null}">
+                                        <span style="font-size: 15px;">Logout</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div><!-- End .dropdown-menu -->
+                    </div><!-- End .cart-dropdown -->
+                    <div class="dropdown cart-dropdown">
+                        <a th:href="@{/cart}" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false" data-display="static">
+                            <i class="icon-shopping-cart"></i>
+                            <span class="cart-count" th:text="${cartCount}"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-cart-products">
+                            </div><!-- End .cart-product -->
+
+                            <div class="dropdown-cart-total">
+                                <span>Total</span>
+
+                                <span class="cart-total-price"
+                                      th:text="${#strings.replace(#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT'), ',', '.')}"></span>
+                            </div><!-- End .dropdown-cart-total -->
+
+                            <div class="col border-end  d-flex justify-content-center align-items-center">
+                                <a th:href="@{/cart}" class="btn btn-primary">View Cart</a>
+                            </div><!-- End .dropdown-cart-total -->
+                        </div><!-- End .dropdown-menu -->
+                    </div><!-- End .cart-dropdown -->
+                </div><!-- End .header-right -->
+            </div><!-- End .container -->
+        </div><!-- End .header-middle -->
+    </header><!-- End .header -->
+
+    <main class="main">
+        <div class="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="product-details-top">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="product-gallery">
+                                        <figure class="product-main-image">
+                                            <img th:src="@{${'/images/products/' + product.image}}" alt="Product image" class="product-image">
+                                        </figure><!-- End .product-main-image -->
+                                    </div><!-- End .product-gallery -->
+                                </div><!-- End .col-md-6 -->
+
+                                <div class="col-md-6">
+                                    <div class="product-details product-details-sidebar">
+                                        <h1 class="product-title" th:text="${product.name}"></h1>
+                                        <!-- End .product-title -->
+
+                                        <div class="ratings-container">
+                                            <div class="ratings">
+                                                <div class="ratings-val" th:style="'width: ' + ${product.rating / 5 * 100 + '%;'}"></div>
+                                                <!-- End .ratings-val -->
+                                            </div><!-- End .ratings -->
+                                            <a class="ratings-text" href="#product-review-link" id="review-link" th:text="'(' + ${countRatings} + ' Reviews)'"></a>
+                                        </div><!-- End .rating-container -->
+
+                                        <div class="product-price" th:text="${#strings.replace(#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT'), ',', '.').concat(' đ')}">
+                                        </div><!-- End .product-price -->
+
+                                        <div class="product-content">
+                                            <p class="text-justify" th:text="${product.description}"></p>
+                                        </div><!-- End .product-content -->
+
+                                        <div class="details-filter-row details-row-size">
+                                            <label>Stock:</label>
+                                            <p id="stockPlaceholder">0</p>
+                                            <label for="size" class="ml-auto">Size:</label>
+                                            <div class="select-custom">
+                                                <select name="size" id="size" class="form-control" th:data-pid="${product.pid}">
+                                                    <option value="" selected="selected">Select a size</option>
+                                                    <th:block th:each="size: ${sizes}">
+                                                        <option th:text="${size.size}" value="${size.size}"></option>
+                                                    </th:block>
+                                                </select>
+                                            </div><!-- End .select-custom -->
+                                        </div><!-- End .details-filter-row -->
+
+                                        <div class="product-details-action">
+                                            <div class="details-action-col">
+                                                <label for="qty">Quantity:</label>
+                                                <div class="product-details-quantity">
+                                                    <input type="number" id="qty" class="form-control" value="1" min="1"
+                                                           step="1" data-decimals="0" required>
+                                                </div><!-- End .product-details-quantity -->
+
+                                                <button id="addToCartBtn" class="btn-product btn-cart">
+                                                    <span>ADD TO CART</span>
+                                                </button>
+                                            </div><!-- End .details-action-col -->
+                                        </div><!-- End .product-details-action -->
+                                    </div><!-- End .product-details -->
+                                </div><!-- End .col-md-6 -->
+                            </div><!-- End .row -->
+                        </div><!-- End .product-details-top -->
+
+                        <div class="product-details-tab">
+                            <ul class="nav nav-pills justify-content-center" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="product-review-link" data-toggle="tab"
+                                       href="#product-review-tab" role="tab" aria-controls="product-review-tab"
+                                       aria-selected="true" th:text="'Reviews (' + ${countRatings} + ')'"></a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="product-review-tab" role="tabpanel"
+                                     aria-labelledby="product-review-link">
+                                    <div class="reviews">
+                                        <input type="hidden" id="displayedRatingCount" value="0">
+                                        <div th:each="rating, iterStat : ${groupedRatings[0]}" class="review" th:if="${iterStat.index < 5}">
+                                            <div class="row no-gutters">
+                                                <div class="col ml-4">
+                                                    <h4 th:text="${rating.username}"></h4>
+                                                </div><!-- End .col -->
+                                                <div class="col-auto">
+                                                    <div class="ratings">
+                                                        <div class="ratings-val" th:style="'width: ' + ${rating.rating / 5 * 100 + '%;'}"></div>
+                                                        <!-- End .ratings-val -->
+                                                    </div><!-- End .ratings -->
+                                                </div><!-- End .col-auto -->
+                                            </div><!-- End .row -->
+                                        </div><!-- End .review -->
+                                        <!-- Hidden div to store additional ratings -->
+                                        <div id="hiddenRatings" style="display: none;">
+                                            <!-- Loop through all groups of additional ratings -->
+                                            <div th:each="ratingsGroup, iterStat : ${groupedRatings}" th:if="${iterStat.index > 0}">
+                                                <!-- Loop through ratings in each additional group -->
+                                                <div th:each="rating : ${ratingsGroup}" class="review">
+                                                    <div class="row no-gutters">
+                                                        <div class="col ml-4">
+                                                            <h4 th:text="${rating.username}"></h4>
+                                                        </div><!-- End .col -->
+                                                        <div class="col-auto">
+                                                            <div class="ratings">
+                                                                <div class="ratings-val" th:style="'width: ' + ${rating.rating / 5 * 100 + '%;'}"></div>
+                                                                <!-- End .ratings-val -->
+                                                            </div><!-- End .ratings -->
+                                                        </div><!-- End .col-auto -->
+                                                    </div><!-- End .row -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div th:if="${groupedRatings.size() > 1}">
+                                            <button id="continueButton" onclick="loadMoreRatings()" class="btn btn-primary btn-lg btn-block">View More</button>
+                                        </div>
+                                    </div><!-- End .reviews -->
+                                </div><!-- .End .tab-pane -->
+                            </div><!-- End .tab-content -->
+                        </div><!-- End .product-details-tab -->
+                    </div><!-- End .col-lg-9 -->
+
+                    <aside class="col-lg-3">
+                        <div class="sidebar sidebar-product">
+                            <div class="widget widget-products">
+                                <h4 class="widget-title">Recommended Products</h4><!-- End .widget-title -->
+
+                                <div class="products">
+                                    <div class="product product-sm" th:each="recommendProduct: ${recommendProducts}">
+                                        <figure class="product-media">
+                                            <a th:href="@{/product/{id}(id=${recommendProduct.pid})}">
+                                                <img th:src="@{${'/images/products/' + recommendProduct.image}}"
+                                                     alt="Product image" class="product-image">
+                                            </a>
+                                        </figure>
+
+                                        <div class="product-body">
+                                            <h5 th:text="${recommendProduct.name}" class="product-title"><a th:href="@{/product/{id}(id=${recommendProduct.pid})}"></a></h5><!-- End .product-title -->
+                                            <div class="product-price">
+                                                <span class="new-price" th:text="${#strings.replace(#numbers.formatDecimal(recommendProduct.price, 0, 'COMMA', 0, 'POINT'), ',', '.').concat(' đ')}"></span>
+                                            </div><!-- End .product-price -->
+                                        </div><!-- End .product-body -->
+                                    </div><!-- End .product product-sm -->
+                                </div><!-- End .products -->
+                            </div><!-- End .widget widget-products -->
+
+                            <div class="widget widget-banner-sidebar">
+                                <div class="banner-sidebar banner-overlay">
+                                    <a th:href="@{/shopPageBrand/Adidas}">
+                                        <img th:src="@{/images/banners/adidas-banner.png}" alt="banner">
+                                    </a>
+                                </div><!-- End .banner-ad -->
+                            </div><!-- End .widget -->
+                        </div><!-- End .sidebar sidebar-product -->
+                    </aside><!-- End .col-lg-3 -->
+                </div><!-- End .row -->
+
+            </div><!-- End .container -->
+        </div><!-- End .page-content -->
+    </main><!-- End .main -->
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-center mt-3">
+                    <div class="widget widget-about">
+                        <h6 class="text-sm">
+                            Developed by Nguyen Hoang Duy - ITITIU19111
+                        </h6>
+                    </div>
+                </div>
+                <!-- end col-->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </footer>
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+<script th:inline="javascript">
+    var size = "";
+    var currentProductId = 0;
+
+    $(document).ready(function() {
+        // Call the function on page load
+        updateCartDropdown();
+    });
+
+    $(document).ready(function () {
+        $('#size').on('change', function () {
+            var selectedSize = $('option:selected', this).text();
+            size = selectedSize;
+            var productId = $(this).data('pid');
+            currentProductId = productId;
+            console.log(selectedSize, productId)
+            $.ajax({
+                type: "GET",
+                url: "/getStock",
+                data: {pid: productId, size: selectedSize},
+                success: function (response) {
+                    // Update the stock placeholder with the response from the server
+                    // You can modify this part based on your server response
+                    $('#stockPlaceholder').text(response);
+                },
+                error: function () {
+                    console.log('Error fetching stock information.');
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('#addToCartBtn').on('click', function () {
+            // Lấy giá trị quantity từ ô input
+            var quantity = $('#qty').val();
+            // Kiểm tra nếu quantity và size không rỗng thì gọi hàm addToCart
+            if (quantity && size) {
+                addToCart(quantity, size);
+            } else {
+                alert('Please select size and enter quantity.');
+            }
+        });
+    });
+
+    function addToCart(quantity, size) {
+        $.ajax({
+            type: "POST",
+            url: "/addToCart",
+            data: { pid: currentProductId, size: size, quantity: quantity },
+            success: function(response) {
+                console.log(response);
+                updateCartDropdown();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error: " + xhr.responseText);
+                // Handle error, e.g., show an error message
+            }
+        });
+    }
+
+    function updateCartDropdown() {
+        $.ajax({
+            type: "GET",
+            url: "/updateCartDropdown", // Replace with the actual endpoint to get updated cart information
+            success: function(response) {
+                // Update the content of the cart dropdown
+                $(".dropdown-cart-products").empty(); // Clear existing content
+
+                // Iterate through the updated cart items and append them to the dropdown
+                var cartArray = Array.isArray(response.cart) ? response.cart : [];
+                cartArray.forEach(function(item) {
+                    var formattedPrice = parseFloat(item.price).toLocaleString(undefined, { maximumFractionDigits: 2 });
+                    $(".dropdown-cart-products").append(
+                        '<div class="product">' +
+                        '<div class="product-cart-details">' +
+                        '<h4 class="product-title">' + item.name + '</h4>' +
+                        '<span class="cart-product-info">' + formattedPrice + '</span>' +
+                        '<h5 class="product-title">Quantity: ' + item.quantity + '</h5>' +
+                        '<h5 class="product-title">Size: ' + item.size + '</h5>' +
+                        '</div>' +
+                        '<figure class="product-image-container">' +
+                        '<img src="/images/products/' + item.image + '" alt="product">' +
+                        '</figure>' +
+                        // '<a href="/shopPage/removeItem/' + item.index + '" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>' +
+                        '<button class="btn-remove" title="Remove Product" onclick="removeItem(' + item.pid + ', \'' + item.size + '\');"><i class="icon-close"></i></button>' +
+                        '</div>'
+                    );
+                    console.log(item.name)
+                });
+
+                // Update the total price in the cart dropdown
+                $(".cart-total-price").text(parseFloat(response.total).toLocaleString(undefined, { maximumFractionDigits: 2 }));
+                $(".cart-count").text(response.cartCount);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error updating cart dropdown: " + xhr.responseText);
+            }
+        });
+    }
+
+    function removeItem(pid, size) {
+        $.ajax({
+            type: "GET",
+            url: "/removeItem",
+            data: { pid: pid, size: size },
+            success: function(response) {
+                console.log("Stock response:", response);
+                updateCartDropdown();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error: " + xhr.responseText);
+            }
+        });
+    }
+
+    function loadMoreRatings() {
+        // Show the next group of ratings
+        var hiddenRatings = document.getElementById('hiddenRatings');
+        hiddenRatings.style.display = 'block';
+
+        // Update the displayed rating count
+        var displayedRatingCount = parseInt(document.getElementById('displayedRatingCount').value);
+        displayedRatingCount += 5;
+
+        // Display only the next 5 ratings
+        var count = 0;
+        var allRatings = hiddenRatings.querySelectorAll('.review');
+        for (var i = 0; i < allRatings.length; i++) {
+            count += 1;
+            if (i < displayedRatingCount) {
+                if (count = 5) {
+                    console.log(i);
+                    allRatings[i].style.marginBottom = '20px';
+                }
+                allRatings[i].style.display = 'block';
+            } else {
+                allRatings[i].style.display = 'none';
+            }
+        }
+        // Update the displayed rating count in the hidden field
+        document.getElementById('displayedRatingCount').value = displayedRatingCount;
+
+        // Hide the "Continue" button if there are no more hidden ratings
+        var continueButton = document.getElementById('continueButton');
+        if (displayedRatingCount >= allRatings.length) {
+            continueButton.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>

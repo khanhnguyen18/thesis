@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Running Store</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Running Store">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    <link rel="icon" th:href="@{/images/icons/web-icon-180.png}" type='image/x-icon' sizes="180x180"/>
+    <link rel="stylesheet" th:href="@{/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css}">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/plugins/owl-carousel/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{/css/plugins/magnific-popup/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/css/plugins/jquery.countdown.css}">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/demos/demo-9.css}">
+    <!-- Plugins JS File -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/jquery.hoverIntent.min.js}"></script>
+    <script th:src="@{/js/jquery.waypoints.min.js}"></script>
+    <script th:src="@{/js/superfish.min.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/bootstrap-input-spinner.js}"></script>
+    <script th:src="@{/js/jquery.plugin.min.js}"></script>
+    <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/js/jquery.countdown.min.js}"></script>
+    <!-- Main JS File -->
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/demos/demo-9.js}"></script>
+</head>
+
+<body>
+<div class="page-wrapper">
+    <header class="header header-6">
+        <div class="header-middle">
+            <div class="container">
+                <div class="header-left">
+                    <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
+                        <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+                        <form method="get">
+                            <div class="header-search-wrapper search-wrapper-wide">
+                                <label for="searchFunction" class="sr-only">Search</label>
+                                <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                                <input name="keyword" id="searchFunction" type="search" class="form-control" autocomplete="off"
+                                       placeholder="Search product ...">
+                                <div id="search-results-dropdown" class="dropdown-menu" style="width: 265px;  border-top: none;"></div>
+                            </div><!-- End .header-search-wrapper -->
+                        </form>
+                    </div><!-- End .header-search -->
+                </div>
+
+                <div class="header-right">
+                    <div class="dropdown cart-dropdown">
+                        <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                            <i class="icon-user" th:if="${user != null}" style="font-size: 28px;"></i>
+                            <span class="wishlist-txt" th:if="${user != null}" th:text="${user.getUsername()}" style="font-size: 15px;">Login</span>
+                        </div>
+
+                        <a class="wishlist-link" th:href="@{/login}" th:if="${user == null}">
+                            <span class="wishlist-txt" style="font-size: 15px;">Log in</span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" style="transform: translateX(35%); display: flex; justify-content: center; align-items: center; max-width: 170px;" th:if="${user != null}">
+                            <div class="dropdown-item-lead">
+                                <div class="product" style="justify-content: center;">
+                                    <a class="wishlist-link" th:href="@{/user}">
+                                        <span style="font-size: 15px;">Edit Info</span>
+                                    </a>
+                                </div>
+
+                                <div class="product" style="justify-content: center;">
+                                    <a class="wishlist-link" th:href="@{/trackingOrder}">
+                                        <span style="font-size: 15px;">Order</span>
+                                    </a>
+                                </div>
+
+                                <div class="product" style="justify-content: center;">
+                                    <a class="wishlist-link" th:href="@{/logout}" th:if="${user != null and user.getUsername() != null}">
+                                        <span style="font-size: 15px;">Logout</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div><!-- End .dropdown-menu -->
+                    </div><!-- End .cart-dropdown -->
+                    <div class="dropdown cart-dropdown">
+                        <a th:href="@{/cart}" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                            <i class="icon-shopping-cart"></i>
+                            <span class="cart-count" th:text="${cartCount}"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" >
+                            <div class="dropdown-cart-products">
+                            </div><!-- End .cart-product -->
+
+                            <div class="dropdown-cart-total">
+                                <span>Total</span>
+
+                                <span class="cart-total-price" th:text="${#strings.replace(#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT'), ',', '.')}"></span>
+                            </div><!-- End .dropdown-cart-total -->
+
+                            <div class="col border-end  d-flex justify-content-center align-items-center">
+                                <a th:href="@{/cart}" class="btn btn-outline-primary-2">View Cart</a>
+                            </div><!-- End .dropdown-cart-total -->
+                        </div><!-- End .dropdown-menu -->
+                    </div><!-- End .cart-dropdown -->
+                </div>
+            </div><!-- End .container -->
+        </div><!-- End .header-middle -->
+
+        <div class="header-bottom sticky-header">
+            <div class="container">
+                <div class="header-center">
+                    <nav class="main-nav">
+                        <ul class="menu sf-arrows">
+                            <li class="megamenu-container active">
+                                <a th:href="@{/homePage}">Home</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/shopPage/{id}(id=1)}" class="sf-with-ul">Shoes</a>
+
+                                <ul>
+                                    <li>
+                                        <a th:href="@{/shopPage/{gender}/{id}(gender='Men', id=1)}" class="sf-with-ul">Men's
+                                            Shoes</a>
+
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Nike', id=1)}">Nike</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Adidas', id=1)}">Adidas</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Saucony', id=1)}">Saucony</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Altra', id=1)}">Altra</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/shopPage/{gender}/{id}(gender='Women', id=1)}"
+                                           class="sf-with-ul">Women's Shoes</a>
+
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Nike', id=1)}">Nike</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Adidas', id=1)}">Adidas</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Saucony', id=1)}">Saucony</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Altra', id=1)}">Altra</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a th:href="@{/shopPage/{id}(id=2)}">GPS Watches</a>
+                            </li>
+                            <li>
+                                <a class="sf-with-ul">Accessories</a>
+
+                                <ul>
+                                    <li><a th:href="@{/shopPage/{id}(id=3)}">Bone-conduction earphones</a></li>
+                                    <li><a th:href="@{/shopPage/{id}(id=5)}">Running socks</a></li>
+                                    <li><a th:href="@{/shopPage/{id}(id=4)}">Running hat</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a th:href="@{/shopPage/{id}(id=6)}" class="sf-with-ul">Clothes</a>
+
+                                <ul>
+                                    <li>
+                                        <a th:href="@{/shopPage/{gender}/{id}(gender='Men', id=6)}" class="sf-with-ul">Men's
+                                            Clothes</a>
+
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='T8', id=6)}">T8</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Nike', id=6)}">Nike</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Men', brand='Adidas', id=6)}">Adidas</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/shopPage/{gender}/{id}(gender='Women', id=6)}"
+                                           class="sf-with-ul">Women's Clothes</a>
+
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='T8', id=6)}">T8</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Nike', id=6)}">Nike</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/shopPage/{gender}/{brand}/{id}(gender='Women', brand='Adidas', id=6)}">Adidas</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a th:href="@{/shopPage/{id}(id=7)}">Nutrition</a>
+                            </li>
+                        </ul><!-- End .menu -->
+                    </nav><!-- End .main-nav -->
+
+                    <button class="mobile-menu-toggler">
+                        <span class="sr-only">Toggle mobile menu</span>
+                        <i class="icon-bars"></i>
+                    </button>
+                </div><!-- End .header-left -->
+            </div><!-- End .container -->
+        </div><!-- End .header-bottom -->
+    </header><!-- End .header -->
+
+    <main class="main">
+        <div class="intro-section">
+            <div class="intro-section-slider">
+                <div class="container">
+                    <div class="intro-slider-container slider-container-ratio mb-0">
+                        <div class="intro-slider owl-carousel owl-simple owl-light" data-toggle="owl"
+                             data-owl-options='{
+                                    "nav": false,
+                                    "dots": true,
+                                    "responsive": {
+                                        "1200": {
+                                            "nav": true,
+                                            "dots": false
+                                        }
+                                    }
+                                }'>
+                            <div class="intro-slide">
+                                <figure class="slide-image">
+                                    <picture>
+                                        <source media="(max-width: 480px)"
+                                                th:attr="srcset=|@{/images/slider/shokz-open-run-480w.png}|">
+                                        <img width="480" th:src="@{/images/slider/shokz-open-run.png}" alt="Image Desc">
+                                    </picture>
+                                </figure><!-- End .slide-image -->
+                            </div><!-- End .intro-slide -->
+
+                            <div class="intro-slide">
+                                <figure class="slide-image">
+                                    <picture>
+                                        <source media="(max-width: 480px)"
+                                                th:attr="srcset=|@{/images/slider/coros-pace-2-480w.png}|">
+                                        <img src="static/images/slider/coros-pace-2.png" width="480"
+                                             th:src="@{/images/slider/coros-pace-2.png}" alt="Image Desc">
+                                    </picture>
+                                </figure><!-- End .slide-image -->
+                            </div><!-- End .intro-slide -->
+
+                            <div class="intro-slide">
+                                <figure class="slide-image">
+                                    <picture>
+                                        <source media="(max-width: 480px)"
+                                                th:attr="srcset=|@{/images/slider/maurten-gel-480w.png}|">
+                                        <img src="@{/images/slider/maurten-gel.png}" width="480"
+                                             th:src="@{/images/slider/maurten-gel.png}" alt="Image Desc">
+                                    </picture>
+                                </figure><!-- End .slide-image -->
+                            </div><!-- End .intro-slide -->
+
+                            <div class="intro-slide">
+                                <figure class="slide-image">
+                                    <picture>
+                                        <source media="(max-width: 480px)"
+                                                th:attr="srcset=|@{/images/slider/clothes-480w.png}|">
+                                        <img src="@{/images/slider/clothes.png}" width="480"
+                                             th:src="@{/images/slider/clothes.png}" alt="Image Desc">
+                                    </picture>
+                                </figure><!-- End .slide-image -->
+                            </div><!-- End .intro-slide -->
+
+                            <div class="intro-slide">
+                                <figure class="slide-image">
+                                    <picture>
+                                        <source media="(max-width: 480px)"
+                                                th:attr="srcset=|@{/images/slider/saucony-elite-480w.png}|">
+                                        <img src="@{/images/slider/saucony-elite.png}" width="480"
+                                             th:src="@{/images/slider/saucony-elite.png}" alt="Image Desc">
+                                    </picture>
+                                </figure><!-- End .slide-image -->
+                            </div><!-- End .intro-slide -->
+                        </div><!-- End .intro-slider owl-carousel owl-simple -->
+                        <span class="slider-loader"></span><!-- End .slider-loader -->
+                    </div><!-- End .intro-slider-container -->
+                </div><!-- End .container -->
+            </div><!-- End .intro-section-slider -->
+        </div><!-- End .intro-section -->
+
+        <div class="pt-3 pb-3">
+            <div class="container">
+                <div class="owl-carousel mt-4 mb-3 owl-simple" data-toggle="owl"
+                     data-owl-options='{
+                            "nav": false,
+                            "dots": false,
+                            "margin": 30,
+                            "loop": false,
+                            "responsive": {
+                                "0": {
+                                    "items":2
+                                },
+                                "420": {
+                                    "items":3
+                                },
+                                "600": {
+                                    "items":4
+                                },
+                                "900": {
+                                    "items":5
+                                },
+                                "1024": {
+                                    "items":6
+                                }
+                            }
+                        }' style="">
+                    <a th:href="@{/shopPageBrand/Nike}" class="brand">
+                        <img th:src="@{/images/brands/nike.jpeg}" alt="Nike">
+                    </a>
+
+                    <a th:href="@{/shopPageBrand/Altra}" class="brand">
+                        <img th:src="@{/images/brands/altra.jpg}" alt="Altra">
+                    </a>
+
+                    <a th:href="@{/shopPageBrand/Adidas}" class="brand">
+                        <img th:src="@{/images/brands/adidas.jpg}" alt="Adidas">
+                    </a>
+
+                    <a th:href="@{/shopPageBrand/Coros}" class="brand">
+                        <img th:src="@{/images/brands/coros.jpg}" alt="Coros">
+                    </a>
+
+                    <a th:href="@{/shopPageBrand/Saucony}" class="brand">
+                        <img th:src="@{/images/brands/saucony.png}" alt="Saucony">
+                    </a>
+
+                    <a th:href="@{/shopPageBrand/T8}" class="brand">
+                        <img th:src="@{/images/brands/T8.png}" alt="T8">
+                    </a>
+
+                    <a th:href="@{/shopPageBrand/Shokz}" class="brand">
+                        <img th:src="@{/images/brands/shokz.png}" alt="Shokz">
+                    </a>
+                </div><!-- End .owl-carousel -->
+            </div><!-- End .container -->
+        </div><!-- End .bg-lighter -->
+
+        <div class="bg-lighter pt-6">
+            <div class="container">
+                <div class="heading heading-flex mb-3">
+                    <div class="heading-left">
+                        <h2 class="title">Trending Now</h2><!-- End .title -->
+                    </div><!-- End .heading-left -->
+
+                    <div class="heading-right">
+                        <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="trending-women-link" data-toggle="tab"
+                                   href="#trending-women-tab" role="tab" aria-controls="trending-women-tab"
+                                   aria-selected="true">Women</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="trending-men-link" data-toggle="tab" href="#trending-men-tab"
+                                   role="tab" aria-controls="trending-men-tab" aria-selected="false">Men</a>
+                            </li>
+                        </ul>
+                    </div><!-- End .heading-right -->
+                </div><!-- End .heading -->
+
+                <div class="tab-content tab-content-carousel">
+                    <div class="tab-pane p-0 fade show active" id="trending-women-tab" role="tabpanel"
+                         aria-labelledby="trending-women-link">
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow"
+                             data-toggle="owl"
+                             data-owl-options='{
+                                    "nav": false,
+                                    "dots": true,
+                                    "margin": 20,
+                                    "loop": false,
+                                    "responsive": {
+                                        "0": {
+                                            "items":2
+                                        },
+                                        "480": {
+                                            "items":2
+                                        },
+                                        "768": {
+                                            "items":3
+                                        },
+                                        "992": {
+                                            "items":4
+                                        },
+                                        "1200": {
+                                            "items":4,
+                                            "dots": false
+                                        }
+                                    }
+                                }'>
+                            <div class="product product-7 text-center" th:each="product: ${womenList}">
+                                <figure class="product-media">
+                                    <a th:href="@{/product/{id}(id=${product.pid})}">
+                                        <img th:src="@{${'/images/products/' + product.image}}" alt="Product image" class="product-image">
+                                    </a>
+
+                                    <div class="product-action">
+                                        <button class="btn-product btn-cart" data-toggle="modal" th:data-target="'#addProduct' + ${product.pid}"
+                                                th:onclick="'javascript:addToCart(' + ${product.pid} + ');'">
+                                            <span>ADD TO CART</span>
+                                        </button>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title" th:text="${product.name}"><a th:href="@{/product/{id}(id=${product.pid})}">T8 Iced Tee - Women</a></h3>
+                                    <!-- End .product-title -->
+                                    <div class="product-price" th:text="${#strings.replace(#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT'), ',', '.').concat(' đ')}">
+                                    </div><!-- End .product-price -->
+
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" th:style="'width: ' + ${product.rating / 5 * 100 + '%;'}"></div>
+                                            <!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text" th:text="'(' + ${product.ratingCount} + ' Reviews)'"></span>
+                                    </div><!-- End .rating-container -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- .End .tab-pane -->
+                    <div class="tab-pane p-0 fade" id="trending-men-tab" role="tabpanel"
+                         aria-labelledby="trending-men-link">
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow"
+                             data-toggle="owl"
+                             data-owl-options='{
+                                    "nav": false,
+                                    "dots": true,
+                                    "margin": 20,
+                                    "loop": false,
+                                    "responsive": {
+                                        "0": {
+                                            "items":2
+                                        },
+                                        "480": {
+                                            "items":2
+                                        },
+                                        "768": {
+                                            "items":3
+                                        },
+                                        "992": {
+                                            "items":4
+                                        },
+                                        "1200": {
+                                            "items":4,
+                                            "dots": false
+                                        }
+                                    }
+                                }'>
+                            <div class="product product-7 text-center" th:each="product: ${menList}">
+                                <figure class="product-media">
+                                    <a th:href="@{/product/{id}(id=${product.pid})}">
+                                        <img th:src="@{${'/images/products/' + product.image}}" alt="Product image" class="product-image">
+                                    </a>
+
+                                    <div class="product-action">
+                                        <button class="btn-product btn-cart" data-toggle="modal" th:data-target="'#addProduct' + ${product.pid}"
+                                                th:onclick="'javascript:addToCart(' + ${product.pid} + ');'">
+                                            <span>ADD TO CART</span>
+                                        </button>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title" th:text="${product.name}"><a th:href="@{/product/{id}(id=${product.pid})}">T8 Iced Tee - Women</a></h3>
+                                    <!-- End .product-title -->
+                                    <div class="product-price" th:text="${#strings.replace(#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT'), ',', '.').concat(' đ')}">
+                                    </div><!-- End .product-price -->
+
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" th:style="'width: ' + ${product.rating / 5 * 100 + '%;'}"></div>
+                                            <!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text" th:text="'(' + ${product.ratingCount} + ' Reviews)'"></span>
+                                    </div><!-- End .rating-container -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- .End .tab-pane -->
+                </div><!-- End .tab-content -->
+            </div><!-- End .container -->
+        </div>
+
+        <div class="container featured mt-4 pb-2">
+            <div class="heading heading-flex mb-3">
+                <div class="heading-left">
+                    <h2 class="title">Featured Running Shoes</h2><!-- End .title -->
+                </div><!-- End .heading-left -->
+
+                <div class="heading-right">
+                    <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="featured-women-link" data-toggle="tab"
+                               href="#featured-women-tab" role="tab" aria-controls="featured-women-tab"
+                               aria-selected="true">Women</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="featured-men-link" data-toggle="tab" href="#featured-men-tab"
+                               role="tab" aria-controls="featured-men-tab" aria-selected="true">Men</a>
+                        </li>
+                    </ul>
+                </div><!-- End .heading-right -->
+            </div><!-- End .heading -->
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="banner banner-overlay product-banner">
+                        <a href="#">
+                            <img th:src="@{/images/homepage/shoes-banner.png}" alt="shoes-banner">
+                        </a>
+                        <div class="banner-content">
+                            <div class="banner-top">
+                                <div class="banner-title text-white text-center">
+                                    <i class="la la-star-o"></i>
+                                    <h3 class="text-white">Our Experts<br>Recommend</h3>
+                                </div>
+                            </div>
+                            <div class="banner-bottom">
+                                <div class="product-cat">
+                                    <h4 class="text-white">Sale</h4>
+                                </div>
+                                <div class="product-price">
+                                    <h4 class="text-white"></h4>
+                                </div>
+
+                                <a th:href="@{/shopPage/1}" class="btn btn-outline-white banner-link">Shop Now</a>
+                            </div>
+                        </div>
+                    </div><!-- End .banner banner-overlay -->
+                </div><!-- End .col-lg-3 -->
+
+                <div class="col-lg-9">
+                    <div class="tab-content tab-content-carousel">
+                        <div class="tab-pane p-0 fade show active" id="featured-women-tab" role="tabpanel"
+                             aria-labelledby="featured-women-link">
+                            <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow"
+                                 data-toggle="owl"
+                                 data-owl-options='{
+                                        "nav": false,
+                                        "dots": true,
+                                        "margin": 20,
+                                        "loop": false,
+                                        "responsive": {
+                                            "0": {
+                                                "items":2
+                                            },
+                                            "480": {
+                                                "items":2
+                                            },
+                                            "768": {
+                                                "items":3
+                                            },
+                                            "992": {
+                                                "items":3,
+                                                "nav": true,
+                                                "dots": false
+                                            }
+                                        }
+                                    }'>
+                                <div class="product product-7 text-center" th:each="product: ${womenShoesList}">
+                                    <figure class="product-media">
+                                        <a th:href="@{/product/{id}(id=${product.pid})}">
+                                            <img th:src="@{${'/images/products/' + product.image}}" alt="Product image" class="product-image">
+                                        </a>
+
+                                        <div class="product-action">
+                                            <button class="btn-product btn-cart" data-toggle="modal" th:data-target="'#addProduct' + ${product.pid}"
+                                                    th:onclick="'javascript:addToCart(' + ${product.pid} + ');'">
+                                                <span>ADD TO CART</span>
+                                            </button>
+                                        </div><!-- End .product-action -->
+                                    </figure><!-- End .product-media -->
+
+                                    <div class="product-body">
+                                        <h3 class="product-title" th:text="${product.name}"><a th:href="@{/product/{id}(id=${product.pid})}">T8 Iced Tee - Women</a></h3>
+                                        <!-- End .product-title -->
+                                        <div class="product-price" th:text="${#strings.replace(#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT'), ',', '.').concat(' đ')}">
+                                        </div><!-- End .product-price -->
+
+                                        <div class="ratings-container">
+                                            <div class="ratings">
+                                                <div class="ratings-val" th:style="'width: ' + ${product.rating / 5 * 100 + '%;'}"></div>
+                                                <!-- End .ratings-val -->
+                                            </div><!-- End .ratings -->
+                                            <span class="ratings-text" th:text="'(' + ${product.ratingCount} + ' Reviews)'"></span>
+                                        </div><!-- End .rating-container -->
+                                    </div><!-- End .product-body -->
+                                </div><!-- End .product -->
+                            </div><!-- End .owl-carousel -->
+                        </div><!-- .End .tab-pane -->
+                        <div class="tab-pane p-0 fade" id="featured-men-tab" role="tabpanel"
+                             aria-labelledby="featured-men-link">
+                            <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow"
+                                 data-toggle="owl"
+                                 data-owl-options='{
+                                        "nav": false,
+                                        "dots": true,
+                                        "margin": 20,
+                                        "loop": false,
+                                        "responsive": {
+                                            "0": {
+                                                "items":1
+                                            },
+                                            "480": {
+                                                "items":2
+                                            },
+                                            "768": {
+                                                "items":3
+                                            },
+                                            "992": {
+                                                "items":3,
+                                                "nav": true,
+                                                "dots": false
+                                            }
+                                        }
+                                    }'>
+                                <div class="product product-7 text-center" th:each="product: ${menShoesList}">
+                                    <figure class="product-media">
+                                        <a th:href="@{/product/{id}(id=${product.pid})}">
+                                            <img th:src="@{${'/images/products/' + product.image}}" alt="Product image" class="product-image">
+                                        </a>
+
+                                        <div class="product-action">
+                                            <button class="btn-product btn-cart" data-toggle="modal" th:data-target="'#addProduct' + ${product.pid}"
+                                                    th:onclick="'javascript:addToCart(' + ${product.pid} + ');'">
+                                                <span>ADD TO CART</span>
+                                            </button>
+                                        </div><!-- End .product-action -->
+                                    </figure><!-- End .product-media -->
+
+                                    <div class="product-body">
+                                        <h3 class="product-title" th:text="${product.name}"><a th:href="@{/product/{id}(id=${product.pid})}">T8 Iced Tee - Women</a></h3>
+                                        <!-- End .product-title -->
+                                        <div class="product-price" th:text="${#strings.replace(#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT'), ',', '.').concat(' đ')}">
+                                        </div><!-- End .product-price -->
+
+                                        <div class="ratings-container">
+                                            <div class="ratings">
+                                                <div class="ratings-val" th:style="'width: ' + ${product.rating / 5 * 100 + '%;'}"></div>
+                                                <!-- End .ratings-val -->
+                                            </div><!-- End .ratings -->
+                                            <span class="ratings-text" th:text="'(' + ${product.ratingCount} + ' Reviews)'"></span>
+                                        </div><!-- End .rating-container -->
+                                    </div><!-- End .product-body -->
+                                </div><!-- End .product -->
+                            </div><!-- End .owl-carousel -->
+                        </div><!-- .End .tab-pane -->
+                    </div><!-- End .tab-content -->
+                </div><!-- End .col-lg-9 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+
+        <div class="container">
+            <hr class="mt-3 mb-4">
+        </div><!-- End .container -->
+
+        <div class="container pb-2">
+            <div class="heading heading-flex mb-3">
+                <div class="heading-left">
+                    <h2 class="title">Featured Running Accessories</h2><!-- End .title -->
+                </div><!-- End .heading-left -->
+            </div><!-- End .heading -->
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="banner banner-overlay product-banner">
+                        <a href="#">
+                            <img th:src="@{/images/homepage/accessories-banner.png}" alt="accessories-banner">
+                        </a>
+                        <div class="banner-content">
+                            <div class="banner-bottom">
+                                <div class="product-cat">
+                                    <h4 class="text-white">Sale</h4>
+                                </div>
+                                <a th:href="@{/shopPage/7}" class="btn btn-outline-white banner-link">Shop Now</a>
+                            </div>
+                        </div>
+                    </div><!-- End .banner banner-overlay -->
+                </div><!-- End .col-lg-3 -->
+
+                <div class="col-lg-9">
+                    <div class="tab-content tab-content-carousel">
+                        <div class="tab-pane p-0 fade show active" id="bags-women-tab" role="tabpanel"
+                             aria-labelledby="bags-women-link">
+                            <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow"
+                                 data-toggle="owl"
+                                 data-owl-options='{
+                                        "nav": false,
+                                        "dots": true,
+                                        "margin": 20,
+                                        "loop": false,
+                                        "responsive": {
+                                            "0": {
+                                                "items":2
+                                            },
+                                            "480": {
+                                                "items":2
+                                            },
+                                            "768": {
+                                                "items":3
+                                            },
+                                            "1200": {
+                                                "items":3,
+                                                "nav": true,
+                                                "dots": false
+                                            }
+                                        }
+                                    }'>
+                                <div class="product product-7 text-center" th:each="product: ${accessoriesList}">
+                                    <figure class="product-media">
+                                        <a th:href="@{/product/{id}(id=${product.pid})}">
+                                            <img th:src="@{${'/images/products/' + product.image}}" alt="Product image" class="product-image">
+                                        </a>
+
+                                        <div class="product-action">
+                                            <button class="btn-product btn-cart" data-toggle="modal" th:data-target="'#addProduct' + ${product.pid}"
+                                                    th:onclick="'javascript:addToCart(' + ${product.pid} + ');'">
+                                                <span>ADD TO CART</span>
+                                            </button>
+                                        </div><!-- End .product-action -->
+                                    </figure><!-- End .product-media -->
+
+                                    <div class="product-body">
+                                        <h3 class="product-title" th:text="${product.name}"><a th:href="@{/product/{id}(id=${product.pid})}">T8 Iced Tee - Women</a></h3>
+                                        <!-- End .product-title -->
+                                        <div class="product-price" th:text="${#strings.replace(#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT'), ',', '.').concat(' đ')}">
+                                        </div><!-- End .product-price -->
+
+                                        <div class="ratings-container">
+                                            <div class="ratings">
+                                                <div class="ratings-val" th:style="'width: ' + ${product.rating / 5 * 100 + '%;'}"></div>
+                                                <!-- End .ratings-val -->
+                                            </div><!-- End .ratings -->
+                                            <span class="ratings-text" th:text="'(' + ${product.ratingCount} + ' Reviews)'"></span>
+                                        </div><!-- End .rating-container -->
+                                    </div><!-- End .product-body -->
+                                </div><!-- End .product -->
+                            </div><!-- End .owl-carousel -->
+                        </div><!-- .End .tab-pane -->
+                    </div><!-- End .tab-content -->
+                </div>
+            </div>
+        </div><!-- End .container -->
+
+        <div class="container">
+            <hr class="mt-3 mt-xl-1 mb-0">
+        </div><!-- End .container -->
+    </main><!-- End .main -->
+
+    <!-- ========== footer start =========== -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-center mt-3">
+                    <div class="widget widget-about">
+                        <h6 class="text-sm">
+                            Developed by Nguyen Hoang Duy - ITITIU19111
+                        </h6>
+                    </div>
+                </div>
+                <!-- end col-->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </footer>
+    <!-- ========== footer end =========== -->
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+<div class="modal fade" th:each="product : ${products}" th:attr="id='addProduct' + ${product.pid}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img th:src="@{${'/images/products/' + product.image}}" alt="Product image" class="product-image" style="width: 100px; height: 100px; margin-right: 20px;">
+                <h5 class="modal-title" th:text="${product.name}">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Size Selection</h5>
+                <p>Stock: <span class="stock">0</span></p>
+                <div class="form-group btn-group-size" data-toggle="buttons" id="size-buttons"></div>
+
+                <hr>
+
+                <div class="mb-5 col-md-4">
+                    <h5>Quantity</h5>
+                    <input type="number" class="form-control" name="quantity" th:id="'quantityInput' + ${product.pid}" th:value="${product.quantity}" min="1" step="1">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveChanges()">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    $(document).ready(function() {
+        // Call the function on page load
+        updateCartDropdown();
+    });
+    var currentProductId;
+    var selectedSize;
+    function addToCart(productId) {
+        currentProductId = productId;
+        $.ajax({
+            type: "GET",
+            url: "/getSize",
+            data: { pid: productId },
+            success: function(response) {
+                // Xử lý phản hồi từ server
+                console.log(response);
+
+                // Cập nhật nội dung Thymeleaf với danh sách kích thước
+                updateSizeList(response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error: " + xhr.responseText);
+            }
+        });
+    }
+
+    function updateSizeList(sizes) {
+        // Xóa tất cả các nút radio hiện có
+        $(".btn-group-size").empty();
+
+        if (sizes.length > 1) {
+            // Nếu sizes không phải là null và có ít nhất một kích thước
+            // Thêm các nút radio mới dựa trên danh sách kích thước từ server
+            sizes.forEach(function(size) {
+                $(".btn-group-size").append(
+                    '<label class="btn btn-primary" style="min-width: 60.5px !important; margin-right: 5px;">' +
+                    '<input type="radio" name="options" autocomplete="off" style="display: none;" onchange="getSizeStock(\'' + size + '\')">' +
+                    size +
+                    '</label>'
+                );
+            });
+            $(".stock").text(0);
+        } else {
+            $(".btn-group-size").hide();
+            $(".stock").text("Số lượng tồn kho: " + getSizeStock("0")); // Sử dụng giá trị của sizes[0] hoặc giá trị mặc định khác nếu cần
+        }
+    }
+
+    function getSizeStock(size) {
+        var productId = currentProductId;
+        selectedSize = size;
+        console.log("Adding to cart:", productId, size);
+        $.ajax({
+            type: "GET",
+            url: "/getStock",
+            data: { pid: productId, size: size },
+            success: function(response) {
+                console.log("Stock response:", response);
+                // Cập nhật số lượng tồn kho vào Thymeleaf
+                $(".stock").text(response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error: " + xhr.responseText);
+            }
+        });
+    }
+
+    function saveChanges() {
+        // var quantityInput = document.getElementById('quantityInput');
+        // var quantityValue = quantityInput.value;
+        var quantityInputId = 'quantityInput' + currentProductId;
+        // Retrieve the quantity input element using the dynamic ID
+        var quantityInput = document.getElementById(quantityInputId);
+        var quantityValue = quantityInput.value;
+        $.ajax({
+            type: "POST",
+            url: "/addToCart",
+            data: { pid: currentProductId, size: selectedSize, quantity: quantityValue },
+            success: function(response) {
+                console.log(response);
+                $('#addProduct' + currentProductId).modal('hide');
+                updateCartDropdown();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error: " + xhr.responseText);
+                // Handle error, e.g., show an error message
+            }
+        });
+    }
+
+    function updateCartDropdown() {
+        $.ajax({
+            type: "GET",
+            url: "/updateCartDropdown", // Replace with the actual endpoint to get updated cart information
+            success: function(response) {
+                // Update the content of the cart dropdown
+                $(".dropdown-cart-products").empty(); // Clear existing content
+
+                // Iterate through the updated cart items and append them to the dropdown
+                var cartArray = Array.isArray(response.cart) ? response.cart : [];
+                cartArray.forEach(function(item) {
+                    var formattedPrice = parseFloat(item.price).toLocaleString(undefined, { maximumFractionDigits: 2 });
+                    $(".dropdown-cart-products").append(
+                        '<div class="product">' +
+                        '<div class="product-cart-details">' +
+                        '<h4 class="product-title">' + item.name + '</h4>' +
+                        '<span class="cart-product-info">' + formattedPrice + '</span>' +
+                        '<h5 class="product-title">Quantity: ' + item.quantity + '</h5>' +
+                        '<h5 class="product-title">Size: ' + item.size + '</h5>' +
+                        '</div>' +
+                        '<figure class="product-image-container">' +
+                        '<img src="/images/products/' + item.image + '" alt="product">' +
+                        '</figure>' +
+                        // '<a href="/shopPage/removeItem/' + item.index + '" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>' +
+                        '<button class="btn-remove" title="Remove Product" onclick="removeItem(' + item.pid + ', \'' + item.size + '\');"><i class="icon-close"></i></button>' +
+                        '</div>'
+                    );
+                    console.log(item.name)
+                });
+
+                // Update the total price in the cart dropdown
+                $(".cart-total-price").text(parseFloat(response.total).toLocaleString(undefined, { maximumFractionDigits: 2 }));
+                $(".cart-count").text(response.cartCount);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error updating cart dropdown: " + xhr.responseText);
+            }
+        });
+    }
+
+    function removeItem(pid, size) {
+        $.ajax({
+            type: "GET",
+            url: "/removeItem",
+            data: { pid: pid, size: size },
+            success: function(response) {
+                console.log("Stock response:", response);
+                updateCartDropdown();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error: " + xhr.responseText);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        $('#searchFunction').keyup(function() {
+            var keyword = $(this).val();
+            var dropdown = $('#search-results-dropdown');
+            $.ajax({
+                type: 'GET',
+                url: '/search', // Update the URL to your actual search endpoint
+                data: { keyword: keyword },
+                success: function(response) {
+                    dropdown.empty();
+
+                    // Append new search results as dropdown items
+                    $.each(response, function(_, item) {
+                        var dropdownItem = $('<a class="dropdown-item d-flex align-items-center" href="/product/' + item.pid + '">' +
+                            '<img src="/images/products/' + item.image + '" alt="' + item.name + '" width="60" height="60" class="mr-2">' +
+                            '<span class="item-text">' + item.name + '</span>' +
+                            '</a>');
+                        dropdown.append(dropdownItem);
+                    });
+
+                    // Show the dropdown if there are results
+                    if (response.length > 0 || keyword.trim() !== '') {
+                        dropdown.show();
+                    }
+                    else {
+                        dropdown.hide();
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+
+</html>

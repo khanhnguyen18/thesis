@@ -1,5 +1,4 @@
-FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
+FROM maven:3.6.0-jdk-11-slim AS build
 
 RUN mvn package
 
